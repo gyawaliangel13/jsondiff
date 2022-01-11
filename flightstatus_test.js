@@ -53,7 +53,7 @@ jQuery(document).ready(function () {
     }
     let res = {
       body: data,
-      headers: headers
+      headers: headers.get("Cache-Control")
     }
     return res;
 
@@ -86,7 +86,7 @@ jQuery(document).ready(function () {
       headers = await response.headers;
     }
     let res = {
-      headers: headers,
+      headers: headers.get("Cache-Control"),
       body: data
     }
     return res;
