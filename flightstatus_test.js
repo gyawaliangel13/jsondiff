@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
     console.log("comapre")
   });
 
-  $('#sample-data').on('change', function (event) {
+  $('#sample-data').on('change', async function (event) {
     const fileList = event.target.files;
     var file = fileList[0];
     var reader = new FileReader();
@@ -12,9 +12,9 @@ jQuery(document).ready(function () {
       for (var line = 0; line < lines.length; line++) {
         console.log(line + " --> " + lines[line]);
         console.log("MWS Response")
-        getMWSResponse();
+        await getMWSResponse();
         console.log("FlightStatus Response")
-        getFSResponse();
+        await getFSResponse();
       }
     };
     reader.readAsText(file);
@@ -32,7 +32,7 @@ jQuery(document).ready(function () {
       redirect: 'follow'
     };
 
-    let response = await fetch("https://cdn.kqa1.flyaa.aa.com/apiv2/mobile-flightstatus/upgrade-list/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
+    let response = await fetch("https://cors-anywhere.herokuapp.com/https://cdn.kqa1.flyaa.aa.com/apiv2/mobile-flightstatus/upgrade-list/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
     console.log(response)
     if (response.status === 200) {
       let data = await response.text()
@@ -59,7 +59,7 @@ jQuery(document).ready(function () {
       redirect: 'follow'
     };
 
-    let response = await fetch("https://cdn.kiqa.flyaa.aa.com/mws_v54/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
+    let response = await fetch("https://cors-anywhere.herokuapp.com/https://cdn.kiqa.flyaa.aa.com/mws_v54/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
     console.log(response)
     if (response.status === 200) {
       let data = await response.text()
