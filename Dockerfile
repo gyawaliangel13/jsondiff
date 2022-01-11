@@ -6,7 +6,7 @@ RUN apt-get install -y build-essential
 RUN apt install git -y
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 RUN apt install nginx -y
-ARG ang=193
+ARG ang=1931
 RUN git clone https://github.com/gyawaliangel13/jsondiff
 RUN cp -r jsondiff/* /var/www/html/
 CMD ["nginx", "-g", "daemon off;"]
