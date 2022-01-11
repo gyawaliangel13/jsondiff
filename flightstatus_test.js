@@ -23,7 +23,7 @@ jQuery(document).ready(function () {
     console.log(mwsRes)
     //let mwsRes = {"FIS flight status":{"fieldErrors":"","presentationErrors":"","infoMessages":"","alertMessage":null,"messageParams":null,"flights":[{"sliceIndex":0,"operatingCarrierCode":"AA","operatingCarrierName":"American Airlines","otherGDSCrossReferencePNR":null,"marketingCarrierCode":null,"marketingCarrierName":null,"operationalDisclosureText":"American Airlines","flightNumber":"2007","partnerFlightNumber":null,"originCountryCode":null,"originAirportCode":"CLT","originCity":"Charlotte","destinationCountryCode":null,"destinationAirportCode":"DFW","destinationCity":"Dallas/ Fort Worth","arrivalDate":"2022-01-07T15:34:00.000-06:00","departDate":"2022-01-07T13:27:00.000-05:00","boardingTime":"2022-01-07T12:52:00.000-05:00","aircraftType":"Airbus A321","flightStatus":{"originInfo":{"gate":null,"terminal":null,"actualTime":null,"estimatedTime":"2022-01-07T13:27:00.000-05:00","baggageClaimArea":null,"flightStatus":"ON TIME"},"destinationInfo":{"gate":"A29","terminal":"A","actualTime":"2022-01-07T15:34:00.000-06:00","estimatedTime":"2022-01-07T15:34:00.000-06:00","baggageClaimArea":"A28","flightStatus":"ARRIVED"},"flightStatus":"ARRIVED","flifoFlightStatusPrimary":"ARRIVED AT GATE","flifoFlightStatusSecondary":"","flifoFlightStatusPrimaryColor":"#FF008712","flifoFlightStatusSecondaryColor":"","cancelled":false,"arrived":true,"departed":false,"validDataPresent":true},"priorLegFlightInfo":null,"wifiCarrier":true,"refreshTime":null,"seatNo":null,"updateRequired":false,"showUpgradeStandbyList":false,"allowFSN":true,"miles":null,"oaSegment":false}]}}
     if(mwsRes){
-      mwsRes = JSON.stringify(mwsRes);
+      //mwsRes = JSON.stringify(mwsRes);
     }
     $('#textarealeft').val(mwsRes);
 
@@ -32,7 +32,7 @@ jQuery(document).ready(function () {
     console.log(fsRes)
     //let fsRes  = {"FIS flight status":{"fieldErrors":"","presentationErrors":"","infoMessages":"","alertMessage":null,"messageParams":null,"flights":[{"sliceIndex":0,"operatingCarrierCode":"AA","operatingCarrierName":"American Airlines","otherGDSCrossReferencePNR":null,"marketingCarrierCode":null,"marketingCarrierName":null,"operationalDisclosureText":"American Airlines","flightNumber":"2007","partnerFlightNumber":null,"originCountryCode":null,"originAirportCode":"CLT","originCity":"Charlotte","destinationCountryCode":null,"destinationAirportCode":"DFW","destinationCity":"Dallas/ Fort Worth","arrivalDate":"2022-01-07T15:34:00.000-06:00","departDate":"2022-01-07T13:27:00.000-05:00","boardingTime":"2022-01-07T12:52:00.000-05:00","aircraftType":"Airbus A321","flightStatus":{"originInfo":{"gate":null,"terminal":null,"actualTime":null,"estimatedTime":"2022-01-07T13:27:00.000-05:00","baggageClaimArea":null,"flightStatus":"ON TIME"},"destinationInfo":{"gate":"A29","terminal":"A","actualTime":"2022-01-07T15:34:00.000-06:00","estimatedTime":"2022-01-07T15:34:00.000-06:00","baggageClaimArea":"A28","flightStatus":"ARRIVED"},"flightStatus":"ARRIVED","flifoFlightStatusPrimary":"ARRIVED AT GATE","flifoFlightStatusSecondary":"","flifoFlightStatusPrimaryColor":"#FF008712","flifoFlightStatusSecondaryColor":"","cancelled":false,"arrived":true,"departed":false,"validDataPresent":true},"priorLegFlightInfo":null,"wifiCarrier":true,"refreshTime":null,"seatNo":null,"updateRequired":false,"showUpgradeStandbyList":false,"allowFSN":true,"miles":null,"oaSegment":false}]}}
     if(fsRes){
-      fsRes = JSON.stringify(fsRes);
+      //fsRes = JSON.stringify(fsRes);
     }
     $('#textarearight').val(fsRes);
   }
@@ -51,11 +51,11 @@ jQuery(document).ready(function () {
 
     let response = await fetch("https://cors-anywhere.herokuapp.com/https://cdn.kqa1.flyaa.aa.com/apiv2/mobile-flightstatus/upgrade-list/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
     console.log(response)
+    let data = "";
     if (response.status === 200) {
-      let data = await response.text()
-      console.log(data)
+      data = await response.text()
     }
-    return response;
+    return data;
 
   }
 
@@ -79,11 +79,11 @@ jQuery(document).ready(function () {
 
     let response = await fetch("https://cors-anywhere.herokuapp.com/https://cdn.kiqa.flyaa.aa.com/mws_v54/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
     console.log(response)
+    let data = "";
     if (response.status === 200) {
-      let data = await response.text()
-      console.log(data)
+      data = await response.text()
     }
-    return response;
+    return data;
 
   }
 
