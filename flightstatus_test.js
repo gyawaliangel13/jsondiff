@@ -37,7 +37,7 @@ jQuery(document).ready(function () {
           $.ajax(settings).done(function (response) {
             console.log(response);
           });
-
+          /// this was added
 
     }
     
