@@ -1,3 +1,6 @@
+let mwsCache = "";
+let fsCache = "";
+
 jQuery(document).ready(function () {
   $('#initiate').click(function () {
     console.log("comapre")
@@ -29,6 +32,14 @@ jQuery(document).ready(function () {
     console.log(fsRes)
     //let fsRes  = {"FIS flight status":{"fieldErrors":"","presentationErrors":"","infoMessages":"","alertMessage":null,"messageParams":null,"flights":[{"sliceIndex":0,"operatingCarrierCode":"AA","operatingCarrierName":"American Airlines","otherGDSCrossReferencePNR":null,"marketingCarrierCode":null,"marketingCarrierName":null,"operationalDisclosureText":"American Airlines","flightNumber":"2007","partnerFlightNumber":null,"originCountryCode":null,"originAirportCode":"CLT","originCity":"Charlotte","destinationCountryCode":null,"destinationAirportCode":"DFW","destinationCity":"Dallas/ Fort Worth","arrivalDate":"2022-01-07T15:34:00.000-06:00","departDate":"2022-01-07T13:27:00.000-05:00","boardingTime":"2022-01-07T12:52:00.000-05:00","aircraftType":"Airbus A321","flightStatus":{"originInfo":{"gate":null,"terminal":null,"actualTime":null,"estimatedTime":"2022-01-07T13:27:00.000-05:00","baggageClaimArea":null,"flightStatus":"ON TIME"},"destinationInfo":{"gate":"A29","terminal":"A","actualTime":"2022-01-07T15:34:00.000-06:00","estimatedTime":"2022-01-07T15:34:00.000-06:00","baggageClaimArea":"A28","flightStatus":"ARRIVED"},"flightStatus":"ARRIVED","flifoFlightStatusPrimary":"ARRIVED AT GATE","flifoFlightStatusSecondary":"","flifoFlightStatusPrimaryColor":"#FF008712","flifoFlightStatusSecondaryColor":"","cancelled":false,"arrived":true,"departed":false,"validDataPresent":true},"priorLegFlightInfo":null,"wifiCarrier":true,"refreshTime":null,"seatNo":null,"updateRequired":false,"showUpgradeStandbyList":false,"allowFSN":true,"miles":null,"oaSegment":false}]}}
     $('#textarearight').val(fsRes.body);
+
+    $('#report').append(`<div id="cache">MWS Cache: ${mwsRes.headers}    ||    Flight Status Cache: ${fsRes.headers}</div>`);
+    if(fsRes.headers == mwsRes.headers){
+      $('#cache').css("background-color", "CCFFCC");
+    }
+    else{
+      $('#cache').css("background-color", "FFCCCC");
+    }
   }
 
   //Flight Status Response
