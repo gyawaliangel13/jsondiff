@@ -20,10 +20,16 @@ jQuery(document).ready(function () {
   async function makeAPICall(){
     console.log("MWS Response")
     let mwsRes = await getMWSResponse();
+    if(mwsRes){
+      mwsRes = JSON.stringify(mwsRes);
+    }
     $('#textarealeft').val(mwsRes);
 
     console.log("FlightStatus Response")
     let fsRes = await getFSResponse();
+    if(fsRes){
+      fsRes = JSON.stringify(fsRes);
+    }
     $('#textarearight').val(fsRes);
   }
 
