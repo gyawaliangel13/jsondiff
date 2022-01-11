@@ -11,10 +11,15 @@ jQuery(document).ready(function () {
       var lines = this.result.split(/\r\n|\n/);
       for (var line = 0; line < lines.length; line++) {
         console.log(line + " --> " + lines[line]);
+
         console.log("MWS Response")
-        await getMWSResponse();
+        let mwsRes = await getMWSResponse();
+        $('#textarealeft').val(mwsRes);
+
         console.log("FlightStatus Response")
-        await getFSResponse();
+        let fsRes = await getFSResponse();
+        $('#textarearight').val(fsRes);
+        
       }
     };
     reader.readAsText(file);
