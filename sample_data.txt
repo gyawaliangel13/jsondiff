@@ -1,0 +1,1 @@
+departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW

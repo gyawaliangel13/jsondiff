@@ -1,0 +1,38 @@
+jQuery(document).ready(function () {
+    $('#initiate').click(function () {
+        console.log("comapre")
+    });
+
+    $('#sample-data').on('change', function(event) {
+      const fileList = event.target.files;
+      var file = fileList[0];
+      var reader = new FileReader();
+      reader.onload = function(progressEvent){    
+        var lines = this.result.split(/\r\n|\n/);
+        for(var line = 0; line < lines.length; line++){
+          console.log(line + " --> "+ lines[line]);
+          getMWSResponse();
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    function getMWSResponse(){
+
+        var myHeaders = new Headers();
+        myHeaders.append("Cookie", "_abck=5E4BAC4761BCF9AB93EEC56974D1F56C~-1~YAAQhWfNF+iGzZx9AQAArtZ0RwfThKkrVy5T4YaPS8Y4XKR5RDWo+JmOrckxE5eMZfdEJuDi2wSeW7E3t+hWsSapmzBz2uewp1I1m5+WYheuzhAOyNukcOv4KO2iafkmpxzYWVO4VC88B25aW++1Y9TCpMToQawrHqug+f8sPPns2Mw+FNnrHiDDVthomd7TvY1xdShRvUh4oetf0jWkT9mH4XPqiOvINpqw1efdYvZNoyd+TKUKk6jeDRYcD46XC5odkGtZ6tkgb0UGW8me8CS11cFNdaNVJw8oFRdVF1XSBzyqFqPIFvFB+8/SCuYIirzI5HpJHqqgvsOGuCk+e5wqTOF61Q057qZFPTMUPE/o13yagt1Erya52s/PWkefpewl~-1~-1~1639029008; bm_sz=2A4E5B06C523F65C967ADD4BF70BC19A~YAAQhWfNF+mGzZx9AQAArtZ0Rw7a/lMcqJGUowKWXNJEeHlcC6dHfSxsIXdCBcQZR5S9JxCCzEDNJ9dAZaO3h0D5lFusdY4uCrcMjO0YVPrSBxxva3YQnpb797KhTng/V45sHekXM000vMD1i5FlqGG/W1pKtPYFfyOJbYRQ2e8AMXK7WIpt46JDT295sSka26o9UD7ZSOHsXD76ey2dqxqBLk/iwTtnxHk7qViMy3pHkhHjnNWj8tBdqckIuUbtAsbr7WwYiyB/eXb+ZKPDdP/GrSChYl9/4TGxkqx3rA==~3228983~4473136");
+        
+        var requestOptions = {
+          method: 'GET',
+          headers: myHeaders,
+          redirect: 'follow',
+          mode: "no-cors"
+        };
+        
+        fetch("https://cdn.kqa1.flyaa.aa.com/apiv2/mobile-flightstatus/upgrade-list/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+    }
+    
+});
