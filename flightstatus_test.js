@@ -22,19 +22,13 @@ jQuery(document).ready(function () {
     let mwsRes = await getMWSResponse();
     console.log(mwsRes)
     //let mwsRes = {"FIS flight status":{"fieldErrors":"","presentationErrors":"","infoMessages":"","alertMessage":null,"messageParams":null,"flights":[{"sliceIndex":0,"operatingCarrierCode":"AA","operatingCarrierName":"American Airlines","otherGDSCrossReferencePNR":null,"marketingCarrierCode":null,"marketingCarrierName":null,"operationalDisclosureText":"American Airlines","flightNumber":"2007","partnerFlightNumber":null,"originCountryCode":null,"originAirportCode":"CLT","originCity":"Charlotte","destinationCountryCode":null,"destinationAirportCode":"DFW","destinationCity":"Dallas/ Fort Worth","arrivalDate":"2022-01-07T15:34:00.000-06:00","departDate":"2022-01-07T13:27:00.000-05:00","boardingTime":"2022-01-07T12:52:00.000-05:00","aircraftType":"Airbus A321","flightStatus":{"originInfo":{"gate":null,"terminal":null,"actualTime":null,"estimatedTime":"2022-01-07T13:27:00.000-05:00","baggageClaimArea":null,"flightStatus":"ON TIME"},"destinationInfo":{"gate":"A29","terminal":"A","actualTime":"2022-01-07T15:34:00.000-06:00","estimatedTime":"2022-01-07T15:34:00.000-06:00","baggageClaimArea":"A28","flightStatus":"ARRIVED"},"flightStatus":"ARRIVED","flifoFlightStatusPrimary":"ARRIVED AT GATE","flifoFlightStatusSecondary":"","flifoFlightStatusPrimaryColor":"#FF008712","flifoFlightStatusSecondaryColor":"","cancelled":false,"arrived":true,"departed":false,"validDataPresent":true},"priorLegFlightInfo":null,"wifiCarrier":true,"refreshTime":null,"seatNo":null,"updateRequired":false,"showUpgradeStandbyList":false,"allowFSN":true,"miles":null,"oaSegment":false}]}}
-    if(mwsRes){
-      //mwsRes = JSON.stringify(mwsRes);
-    }
-    $('#textarealeft').val(mwsRes);
+    $('#textarealeft').val(mwsRes.body);
 
     console.log("FlightStatus Response in API call")
     let fsRes = await getFSResponse();
     console.log(fsRes)
     //let fsRes  = {"FIS flight status":{"fieldErrors":"","presentationErrors":"","infoMessages":"","alertMessage":null,"messageParams":null,"flights":[{"sliceIndex":0,"operatingCarrierCode":"AA","operatingCarrierName":"American Airlines","otherGDSCrossReferencePNR":null,"marketingCarrierCode":null,"marketingCarrierName":null,"operationalDisclosureText":"American Airlines","flightNumber":"2007","partnerFlightNumber":null,"originCountryCode":null,"originAirportCode":"CLT","originCity":"Charlotte","destinationCountryCode":null,"destinationAirportCode":"DFW","destinationCity":"Dallas/ Fort Worth","arrivalDate":"2022-01-07T15:34:00.000-06:00","departDate":"2022-01-07T13:27:00.000-05:00","boardingTime":"2022-01-07T12:52:00.000-05:00","aircraftType":"Airbus A321","flightStatus":{"originInfo":{"gate":null,"terminal":null,"actualTime":null,"estimatedTime":"2022-01-07T13:27:00.000-05:00","baggageClaimArea":null,"flightStatus":"ON TIME"},"destinationInfo":{"gate":"A29","terminal":"A","actualTime":"2022-01-07T15:34:00.000-06:00","estimatedTime":"2022-01-07T15:34:00.000-06:00","baggageClaimArea":"A28","flightStatus":"ARRIVED"},"flightStatus":"ARRIVED","flifoFlightStatusPrimary":"ARRIVED AT GATE","flifoFlightStatusSecondary":"","flifoFlightStatusPrimaryColor":"#FF008712","flifoFlightStatusSecondaryColor":"","cancelled":false,"arrived":true,"departed":false,"validDataPresent":true},"priorLegFlightInfo":null,"wifiCarrier":true,"refreshTime":null,"seatNo":null,"updateRequired":false,"showUpgradeStandbyList":false,"allowFSN":true,"miles":null,"oaSegment":false}]}}
-    if(fsRes){
-      //fsRes = JSON.stringify(fsRes);
-    }
-    $('#textarearight').val(fsRes);
+    $('#textarearight').val(fsRes.body);
   }
 
   //Flight Status Response
@@ -54,8 +48,13 @@ jQuery(document).ready(function () {
     let data = "";
     if (response.status === 200) {
       data = await response.text()
+      console.log(response.headers)
     }
-    return data;
+    let res = {
+      body: data,
+      headers: await response.headers
+    }
+    return res;
 
   }
 
@@ -82,8 +81,13 @@ jQuery(document).ready(function () {
     let data = "";
     if (response.status === 200) {
       data = await response.text()
+      console.log(response.headers)
     }
-    return data;
+    let res = {
+      headers: await response.headers,
+      body: data
+    }
+    return res;
 
   }
 
