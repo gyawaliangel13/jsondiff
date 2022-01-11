@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
     console.log("comapre")
   });
 
-  $('#sample-data').on('change', async function (event) {
+  $('#sample-data').on('change', function (event) {
     const fileList = event.target.files;
     var file = fileList[0];
     var reader = new FileReader();
@@ -11,19 +11,21 @@ jQuery(document).ready(function () {
       var lines = this.result.split(/\r\n|\n/);
       for (var line = 0; line < lines.length; line++) {
         console.log(line + " --> " + lines[line]);
-
-        console.log("MWS Response")
-        let mwsRes = await getMWSResponse();
-        $('#textarealeft').val(mwsRes);
-
-        console.log("FlightStatus Response")
-        let fsRes = await getFSResponse();
-        $('#textarearight').val(fsRes);
-        
+        makeAPICall()
       }
     };
     reader.readAsText(file);
   });
+
+  async function makeAPICall(){
+    console.log("MWS Response")
+    let mwsRes = await getMWSResponse();
+    $('#textarealeft').val(mwsRes);
+
+    console.log("FlightStatus Response")
+    let fsRes = await getFSResponse();
+    $('#textarearight').val(fsRes);
+  }
 
   //Flight Status Response
   async function getFSResponse() {
