@@ -46,13 +46,14 @@ jQuery(document).ready(function () {
     let response = await fetch("https://cors-anywhere.herokuapp.com/https://cdn.kqa1.flyaa.aa.com/apiv2/mobile-flightstatus/upgrade-list/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
     console.log(response)
     let data = "";
+    let headers = "";
     if (response.status === 200) {
-      data = await response.text()
-      console.log(response.headers)
+      data = await response.text();
+      headers = await response.headers;
     }
     let res = {
       body: data,
-      headers: await response.headers
+      headers: headers
     }
     return res;
 
@@ -79,12 +80,13 @@ jQuery(document).ready(function () {
     let response = await fetch("https://cors-anywhere.herokuapp.com/https://cdn.kiqa.flyaa.aa.com/mws_v54/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
     console.log(response)
     let data = "";
+    let headers = "";
     if (response.status === 200) {
-      data = await response.text()
-      console.log(response.headers)
+      data = await response.text();
+      headers = await response.headers;
     }
     let res = {
-      headers: await response.headers,
+      headers: headers,
       body: data
     }
     return res;
