@@ -9,5 +9,6 @@ RUN apt install nginx -y
 RUN git clone https://github.com/gyawaliangel13/jsondiff
 RUN cp -r jsondiff/* /var/www/html/
 CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 2000
 
 
