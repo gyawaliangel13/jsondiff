@@ -58,14 +58,16 @@ jQuery(document).ready(function () {
     console.log(response)
     let data = "";
     let headers = "";
+    let res = "";
     if (response.status === 200) {
       data = await response.text();
       headers = await response.headers;
+      res = {
+        body: data,
+        headers: headers.get("Cache-Control")
+      }
     }
-    let res = {
-      body: data,
-      headers: headers.get("Cache-Control")
-    }
+
     return res;
 
   }
