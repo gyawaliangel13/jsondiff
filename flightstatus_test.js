@@ -54,7 +54,8 @@ jQuery(document).ready(function () {
       redirect: 'follow'
     };
 
-    let response = await fetch("https://cors-anywhere.herokuapp.com/https://cdn.kqa1.flyaa.aa.com/apiv2/mobile-flightstatus/upgrade-list/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
+    //let response = await fetch("https://cors-anywhere.herokuapp.com/https://cdn.kqa1.flyaa.aa.com/apiv2/mobile-flightstatus/upgrade-list/flightstatus?departureMonth=01&airlineCode=AA&departureDay=07&originCode=CLT&flightNumber=2007&destinationCode=DFW", requestOptions)
+    let response = await fetch("localhost:8080/flightstatus/flightstatus?departureMonth=01&airlineCode=AA&departureDay=11&flightNumber=2007", requestOptions)
     console.log(response)
     let data = "";
     let headers = "";
