@@ -318,3 +318,10 @@ span.fileInput {
     display: block;
     margin: 5px auto;
 }
+
+#cache-control {
+    margin-bottom: 5px;
+    border: 1px solid black;
+    padding: 3px;
+    text-align: center;
+}

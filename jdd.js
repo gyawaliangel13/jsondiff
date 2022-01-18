@@ -843,6 +843,7 @@ var jdd = {
         var report = $('#report');
 
         report.text('');
+        console.log(report.text())
 
         var newDiff = $('<button>Perform a new diff</button>');
         report.append(newDiff);

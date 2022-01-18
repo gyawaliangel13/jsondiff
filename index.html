@@ -21,6 +21,7 @@
         <div id="main">
             <div class="header">
                 <span class="fileInput"><input type="file"  id="sample-data" tabindex="5"></span>
+                <button id="start-compare" style="display: none;">Start Comparing</button>
                 <!-- Add JS Call Here -->
             </div>
     
@@ -46,8 +47,8 @@
             </div>
     
             <div class="diffcontainer">
+                <div id="cache-control"></div>
                 <div id="report">
-                    <div id="cache-control">Placeholder for cache holder div</div>
                 </div>
                 <pre id="out" class="left" class="codeBlock"></pre>
                 <pre id="out2" class="right" class="codeBlock"></pre>
